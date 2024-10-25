@@ -2,7 +2,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 
 const Header = () => {
   return (
-    <header>
+    <header className="mb-4">
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
           <Navbar.Brand >Todo App</Navbar.Brand>
