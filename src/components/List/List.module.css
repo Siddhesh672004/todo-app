@@ -1,7 +1,10 @@
 .item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
+    width: 100%;
+    max-width: 600px;
     border-bottom: 1px solid #ccc;
     gap: 10px; /* space between elements */    
 }
@@ -9,6 +12,7 @@
 .doneItem {
     background-color: greenyellow;
     padding: 10px;
+    width: 100%;
 }
 
 .actionBtn {
@@ -29,7 +33,11 @@
     color: #0056b3;
 }
 
-.listItems{
-    display: "inline-block";
-    border: 2px black;
+.listItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
 }

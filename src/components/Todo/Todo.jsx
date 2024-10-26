@@ -1,4 +1,4 @@
-import styles from './Todo.module.css'
+import styles from "./Todo.module.css";
 import Input from "../Input/Input";
 import List from "../List/List";
 import { useEffect, useState } from "react";
@@ -75,7 +75,7 @@ const Todo = () => {
   const clearAllHandler = () => {
     setList([]); // Clears the list
   };
-  
+
   return (
     <Container className={styles.container}>
       <Row>
@@ -83,10 +83,10 @@ const Todo = () => {
           <h2 className="text-center mb-4">Todo App</h2>
         </Col>
       </Row>
-  
+
       {/* Single Row for Input and Buttons */}
       <Row className="mb-3 align-items-center">
-        <Col md={4}>
+        <Col xs={12} md={4} className="mb-2 mb-md-0">
           <Input
             task={item}
             changeHandler={(value) => setItem(value)}
@@ -94,7 +94,7 @@ const Todo = () => {
             className={styles.inputField}
           />
         </Col>
-        <Col md={2}>
+        <Col xs={6} md={2} className="mb-2 mb-md-0">
           <Button
             variant="primary"
             onClick={btnClickHandler}
@@ -104,7 +104,7 @@ const Todo = () => {
             Add to list
           </Button>
         </Col>
-        <Col md={3}>
+        <Col xs={6} md={3} className="mb-2 mb-md-0">
           <Button
             variant="danger"
             onClick={deleteAllDoneHandler}
@@ -114,7 +114,7 @@ const Todo = () => {
             Delete all Done Items
           </Button>
         </Col>
-        <Col md={3}>
+        <Col xs={12} md={3}>
           <Button
             variant="secondary"
             onClick={clearAllHandler}
@@ -125,7 +125,7 @@ const Todo = () => {
           </Button>
         </Col>
       </Row>
-  
+
       <Row>
         <Col>
           <List
@@ -137,7 +137,7 @@ const Todo = () => {
           />
         </Col>
       </Row>
-  
+
       <Modal show={showModal} onHide={closeDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
@@ -154,8 +154,6 @@ const Todo = () => {
       </Modal>
     </Container>
   );
-    
-
 };
 
 export default Todo;

@@ -81,7 +81,7 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
   ));
 
   return (
-    <div className="mt-3">
+    <div className={`${styles.listItems} d-flex flex-column align-items-center`}>
       <ul className={styles.listItems}>{listItems}</ul>
     </div>
   );
