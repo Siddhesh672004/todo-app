@@ -111,10 +111,10 @@ const Todo = () => {
             disabled={list.every((task) => !task.isDone)}
             className={styles.buttons}
           >
-            Delete all Done Items
+            Delete all Done 
           </Button>
         </Col>
-        <Col xs={12} md={3}>
+        <Col xs={12} md={3} className="mb-2 mb-md-0">
           <Button
             variant="secondary"
             onClick={clearAllHandler}

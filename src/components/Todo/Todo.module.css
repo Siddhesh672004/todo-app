@@ -3,9 +3,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 3px solid black;
     margin-top: 3px;
     padding: 10px;
+    box-shadow: 0 0 10px black;
 }
 
 .list {
@@ -15,17 +15,19 @@
     width: 100%;
     max-width: 600px;
     margin: 3px;
-    border: 3px solid blue;
+    box-shadow: 0 0 10px black;
+    
 }
 
 .inputField {
     width: 100%;
     max-width: 300px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-        rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: 0 10px 10px -5px black;
+    
 }
 
 .buttons {
+   margin: 5px;
     box-shadow: 0 10px 10px -5px black;
     display: inline-flex;          /* Makes the button size to fit its content */
     align-items: center;           /* Centers the text vertically */
@@ -37,3 +39,5 @@
     border-radius: 5px;            /* Optional: Adds rounded corners */
     cursor: pointer; 
 }
+
+
