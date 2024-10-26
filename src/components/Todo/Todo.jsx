@@ -65,6 +65,11 @@ const Todo = () => {
     closeDeleteModal();
   };
 
+  const deleteAllDoneHandler = () => {
+    const updatedList = list.filter((task) => !task.isDone);
+    setList(updatedList);
+  };
+
   return (
     <>
       <h2>Todo App</h2>
@@ -83,6 +88,15 @@ const Todo = () => {
         disabled={!item.trim().length}
       >
         Add to list
+      </Button>
+
+      <Button
+        variant="danger"
+        className="m-2"
+        onClick={deleteAllDoneHandler}
+        disabled={list.every((task) => !task.isDone)} // Disable if no tasks are done
+      >
+        Delete all Done Items
       </Button>
 
       <List

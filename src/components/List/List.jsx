@@ -1,5 +1,6 @@
 import styles from "./List.module.css";
 import { Button } from "react-bootstrap";
+import { BsArrowUp, BsArrowDown } from "react-icons/bs";
 
 const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
   const listItems = tasks.map((task, index) => (
@@ -16,7 +17,7 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
       />
 
       {task.item}
-      <Button
+      {/* <Button
         className={styles.actionBtn}
         variant="primary"
         onClick={() => swapHandler(index, index - 1)}
@@ -34,7 +35,7 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
         disabled={index === tasks.length - 1}
       >
         DOWN
-      </Button>
+      </Button> */}
 
       {/* {!task.isDone && (
         <Button
@@ -45,6 +46,26 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
           DONE
         </Button>
       )} */}
+
+      <BsArrowUp
+        className={styles.actionIcon}
+        onClick={() => swapHandler(index, index - 1)}
+        style={{
+          cursor: index === 0 ? "not-allowed" : "pointer",
+          opacity: index === 0 ? 0.5 : 1,
+        }}
+        disabled={index === 0}
+      />
+
+      <BsArrowDown
+        className={styles.actionIcon}
+        onClick={() => swapHandler(index, index + 1)}
+        style={{
+          cursor: index === tasks.length - 1 ? "not-allowed" : "pointer",
+          opacity: index === tasks.length - 1 ? 0.5 : 1,
+        }}
+        disabled={index === tasks.length - 1}
+      />
 
       {/* Conditionally render DELETE button */}
       {task.isDone && (

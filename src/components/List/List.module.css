@@ -13,3 +13,15 @@
 .check{
     margin: 5px;
 }
+
+.actionIcon {
+    font-size: 1.5em;
+    margin: 0 5px;
+    color: #0d6efd; /* Use the color that suits your theme */
+    vertical-align: middle;
+  }
+  
+  .actionIcon:hover {
+    color: #0056b3; /* Darker shade for hover effect */
+  }
+  
