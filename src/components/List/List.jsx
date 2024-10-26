@@ -1,10 +1,10 @@
-const List = () => {
+const List = ({tasks}) => {
+
+    const listItems = tasks.map((task,index) => <li key={index}>{task}</li>);
+
   return (
     <div className="mt-3">
-      <ul style={{display: "inline-block"}}>
-        <li>Itemm 1</li>
-        <li>Itemm 2</li>
-        <li>Itemm 3</li>
+      <ul style={{display: "inline-block"}}>{listItems}
       </ul>
     </div>
   );
