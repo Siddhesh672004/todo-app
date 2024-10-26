@@ -29,6 +29,14 @@ const Todo = () => {
     localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
 
+  const swapHandler = (initIndex, finalIndex) => {
+    const tasks = [...list];
+    const temp = tasks[initIndex];
+    tasks[initIndex] = tasks[finalIndex];
+    tasks[finalIndex] = temp;
+    setList(tasks);
+  }
+
   return (
     <>
       <h2>Todo App</h2>
@@ -49,7 +57,10 @@ const Todo = () => {
         Add to list
       </Button>
 
-      <List tasks={list} />
+      <List
+        tasks={list}
+        swapHandler={swapHandler}
+      />
     </>
   );
 };
