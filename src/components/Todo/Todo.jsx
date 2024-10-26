@@ -1,7 +1,9 @@
+import styles from './Todo.module.css'
 import Input from "../Input/Input";
 import List from "../List/List";
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Todo = () => {
   const [list, setList] = useState([]);
@@ -70,42 +72,72 @@ const Todo = () => {
     setList(updatedList);
   };
 
+  const clearAllHandler = () => {
+    setList([]); // Clears the list
+  };
+  
   return (
-    <>
-      <h2>Todo App</h2>
-      <Input
-        task={item}
-        changeHandler={(value) => {
-          setItem(value);
-        }}
-        enterKeyHandler={btnClickHandler}
-      />
-
-      <Button
-        variant="primary"
-        className="ms-2"
-        onClick={btnClickHandler}
-        disabled={!item.trim().length}
-      >
-        Add to list
-      </Button>
-
-      <Button
-        variant="danger"
-        className="m-2"
-        onClick={deleteAllDoneHandler}
-        disabled={list.every((task) => !task.isDone)} // Disable if no tasks are done
-      >
-        Delete all Done Items
-      </Button>
-
-      <List
-        tasks={list}
-        swapHandler={swapHandler}
-        doneHandler={donehandler}
-        deleteHandler={openDeleteModal}
-      />
-
+    <Container className={styles.container}>
+      <Row>
+        <Col>
+          <h2 className="text-center mb-4">Todo App</h2>
+        </Col>
+      </Row>
+  
+      {/* Single Row for Input and Buttons */}
+      <Row className="mb-3 align-items-center">
+        <Col md={4}>
+          <Input
+            task={item}
+            changeHandler={(value) => setItem(value)}
+            enterKeyHandler={btnClickHandler}
+            className={styles.inputField}
+          />
+        </Col>
+        <Col md={2}>
+          <Button
+            variant="primary"
+            onClick={btnClickHandler}
+            disabled={!item.trim().length}
+            className={styles.buttons}
+          >
+            Add to list
+          </Button>
+        </Col>
+        <Col md={3}>
+          <Button
+            variant="danger"
+            onClick={deleteAllDoneHandler}
+            disabled={list.every((task) => !task.isDone)}
+            className={styles.buttons}
+          >
+            Delete all Done Items
+          </Button>
+        </Col>
+        <Col md={3}>
+          <Button
+            variant="secondary"
+            onClick={clearAllHandler}
+            disabled={!list.length}
+            className={styles.buttons}
+          >
+            Clear All
+          </Button>
+        </Col>
+      </Row>
+  
+      <Row>
+        <Col>
+          <List
+            tasks={list}
+            swapHandler={swapHandler}
+            doneHandler={donehandler}
+            deleteHandler={openDeleteModal}
+            className={styles.list}
+          />
+        </Col>
+      </Row>
+  
       <Modal show={showModal} onHide={closeDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
@@ -120,8 +152,10 @@ const Todo = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Container>
   );
+    
+
 };
 
 export default Todo;

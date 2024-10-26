@@ -82,7 +82,7 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
 
   return (
     <div className="mt-3">
-      <ul style={{ display: "inline-block" }}>{listItems}</ul>
+      <ul className={styles.listItems}>{listItems}</ul>
     </div>
   );
 };

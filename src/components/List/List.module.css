@@ -1,27 +1,35 @@
-.actionBtn{
-    margin: 5px;
+.item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    gap: 10px; /* space between elements */    
 }
 
-.doneItem{
+.doneItem {
     background-color: greenyellow;
+    padding: 10px;
 }
 
-.item{
-    margin: 5px 0;
+.actionBtn {
+    margin: 0 5px;
 }
 
-.check{
-    margin: 5px;
+.check {
+    margin-right: 10px; /* Space between checkbox and task text */
 }
 
 .actionIcon {
     font-size: 1.5em;
-    margin: 0 5px;
-    color: #0d6efd; /* Use the color that suits your theme */
-    vertical-align: middle;
-  }
-  
-  .actionIcon:hover {
-    color: #0056b3; /* Darker shade for hover effect */
-  }
-  
+    color: #0d6efd; /* Icon color */
+    cursor: pointer;
+}
+
+.actionIcon:hover {
+    color: #0056b3;
+}
+
+.listItems{
+    display: "inline-block";
+    border: 2px black;
+}
