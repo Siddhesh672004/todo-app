@@ -1,3 +1,15 @@
 .actionBtn{
     margin: 5px;
 }
+
+.doneItem{
+    background-color: greenyellow;
+}
+
+.item{
+    margin: 5px 0;
+}
+
+.check{
+    margin: 5px;
+}

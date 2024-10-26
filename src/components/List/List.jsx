@@ -3,7 +3,18 @@ import { Button } from "react-bootstrap";
 
 const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
   const listItems = tasks.map((task, index) => (
-    <li key={index}>
+    <li
+      key={index}
+      className={`${styles.item} ${task.isDone ? styles.doneItem : ""}`}
+    >
+      {/* Replace the DONE button with a Checkbox */}
+      <input
+        className={styles.check}
+        type="checkbox"
+        checked={task.isDone}
+        onChange={() => doneHandler(index)} // Toggle done state
+      />
+
       {task.item}
       <Button
         className={styles.actionBtn}
@@ -25,7 +36,7 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
         DOWN
       </Button>
 
-      {!task.isDone && (
+      {/* {!task.isDone && (
         <Button
           className={styles.actionBtn}
           variant="success"
@@ -33,9 +44,10 @@ const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
         >
           DONE
         </Button>
-      )}
+      )} */}
 
-      {task.isDone && ( // Corrected condition to check task.isDone
+      {/* Conditionally render DELETE button */}
+      {task.isDone && (
         <Button
           className={styles.actionBtn}
           variant="danger"

@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap";
 import Input from "../Input/Input";
 import List from "../List/List";
 import { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 
 const Todo = () => {
   const [list, setList] = useState([]);
@@ -14,6 +14,19 @@ const Todo = () => {
       setItem("");
     }
   };
+
+  const openDeleteModal = (index) => {
+    setTaskToDelete(index);
+    setShowModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setShowModal(false);
+    setTaskToDelete(null);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState(null);
 
   useEffect(() => {
     console.log("ComponentDIdMount");
@@ -39,16 +52,17 @@ const Todo = () => {
   };
 
   const donehandler = (index) => {
-    const tasks = list.map((task, index) =>
-      index === index ? { ...task, isDone: true } : task
+    const tasks = list.map((task, idx) =>
+      idx === index ? { ...task, isDone: !task.isDone } : task
     );
     setList(tasks);
   };
 
-  const deleteHandler = (index) => {
+  const deleteHandler = () => {
     const tasks = [...list];
-    tasks.splice(index, 1);
+    tasks.splice(taskToDelete, 1);
     setList(tasks);
+    closeDeleteModal();
   };
 
   return (
@@ -75,8 +89,23 @@ const Todo = () => {
         tasks={list}
         swapHandler={swapHandler}
         doneHandler={donehandler}
-        deleteHandler={deleteHandler}
+        deleteHandler={openDeleteModal}
       />
+
+      <Modal show={showModal} onHide={closeDeleteModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeDeleteModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={deleteHandler}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
