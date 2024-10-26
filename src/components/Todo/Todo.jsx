@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import Input from "../Input/Input";
 import List from "../List/List";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Todo = () => {
   const [list, setList] = useState([]);
@@ -13,6 +13,21 @@ const Todo = () => {
       setItem("");
     }
   };
+
+  useEffect(() => {
+    console.log("ComponentDIdMount");
+    if (localStorage.getItem("list")) {
+      setList(JSON.parse(localStorage.getItem("list")));
+    }
+    return () => {
+      console.log("componentWillUnmount");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("componentDidUpdate");
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   return (
     <>
