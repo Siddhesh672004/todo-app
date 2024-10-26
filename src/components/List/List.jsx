@@ -1,10 +1,10 @@
 import styles from "./List.module.css";
 import { Button } from "react-bootstrap";
 
-const List = ({ tasks, swapHandler }) => {
+const List = ({ tasks, swapHandler, doneHandler, deleteHandler }) => {
   const listItems = tasks.map((task, index) => (
     <li key={index}>
-      {task}
+      {task.item}
       <Button
         className={styles.actionBtn}
         variant="primary"
@@ -25,13 +25,25 @@ const List = ({ tasks, swapHandler }) => {
         DOWN
       </Button>
 
-      <Button className={styles.actionBtn} variant="success">
-        DONE
-      </Button>
+      {!task.isDone && (
+        <Button
+          className={styles.actionBtn}
+          variant="success"
+          onClick={() => doneHandler(index)}
+        >
+          DONE
+        </Button>
+      )}
 
-      <Button className={styles.actionBtn} variant="danger">
-        DELETE
-      </Button>
+      {task.isDone && ( // Corrected condition to check task.isDone
+        <Button
+          className={styles.actionBtn}
+          variant="danger"
+          onClick={() => deleteHandler(index)}
+        >
+          DELETE
+        </Button>
+      )}
     </li>
   ));
 

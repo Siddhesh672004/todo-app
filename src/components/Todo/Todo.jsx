@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 const Todo = () => {
   const [list, setList] = useState([]);
   const [item, setItem] = useState("");
+
   const btnClickHandler = () => {
     const trimmedItem = item.trim();
     if (trimmedItem.length) {
-      setList([...list, trimmedItem]);
+      setList([...list, { item: trimmedItem, isDone: false }]);
       setItem("");
     }
   };
@@ -35,7 +36,20 @@ const Todo = () => {
     tasks[initIndex] = tasks[finalIndex];
     tasks[finalIndex] = temp;
     setList(tasks);
-  }
+  };
+
+  const donehandler = (index) => {
+    const tasks = list.map((task, index) =>
+      index === index ? { ...task, isDone: true } : task
+    );
+    setList(tasks);
+  };
+
+  const deleteHandler = (index) => {
+    const tasks = [...list];
+    tasks.splice(index, 1);
+    setList(tasks);
+  };
 
   return (
     <>
@@ -60,6 +74,8 @@ const Todo = () => {
       <List
         tasks={list}
         swapHandler={swapHandler}
+        doneHandler={donehandler}
+        deleteHandler={deleteHandler}
       />
     </>
   );
