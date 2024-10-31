@@ -1,11 +1,10 @@
-import styles from "./Todo.module.css";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import Input from "../Input/Input";
 import List from "../List/List";
 import { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import { Container, Row, Col } from "react-bootstrap";
+import styles from "./CTodo.module.css";
 
-const Todo = () => {
+const CTodo = () => {
   const [list, setList] = useState([]);
   const [item, setItem] = useState("");
 
@@ -29,21 +28,6 @@ const Todo = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-
-  useEffect(() => {
-    console.log("ComponentDIdMount");
-    if (localStorage.getItem("list")) {
-      setList(JSON.parse(localStorage.getItem("list")));
-    }
-    return () => {
-      console.log("componentWillUnmount");
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log("componentDidUpdate");
-    localStorage.setItem("list", JSON.stringify(list));
-  }, [list]);
 
   const swapHandler = (initIndex, finalIndex) => {
     const tasks = [...list];
@@ -76,11 +60,30 @@ const Todo = () => {
     setList([]); // Clears the list
   };
 
+  const listBtnhandler = () => {
+    fetch("https://dummyjson.com/todos")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.todos);
+        const items = data?.todos.map((todo) => ({
+          item: todo.todo,
+          isDone: todo.completed,
+        }));
+        setList(items || []);
+      });
+  };
+
   return (
     <Container className={styles.container}>
       <Row>
         <Col>
-          
+          <Button
+            variant="primary"
+            className={styles.buttons}
+            onClick={listBtnhandler}
+          >
+            Get the list from cloud
+          </Button>
         </Col>
       </Row>
 
@@ -111,7 +114,7 @@ const Todo = () => {
             disabled={list.every((task) => !task.isDone)}
             className={styles.buttons}
           >
-            Delete all Done 
+            Delete all Done
           </Button>
         </Col>
         <Col xs={12} md={3} className="mb-2 mb-md-0">
@@ -156,4 +159,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default CTodo;

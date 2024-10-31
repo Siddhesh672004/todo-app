@@ -4,12 +4,13 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Todo from "./components/Todo/Todo";
 import Home from "./pages/Home";
+import CloudTodo from "./pages/CloudTodo";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Home/>
+      <CloudTodo/>
       <Footer />
     </div>
   );
